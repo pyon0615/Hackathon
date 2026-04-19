@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Large data files (too big for GitHub — host separately or use Git LFS)
+*.parquet
+*.zip
+backend/data/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
