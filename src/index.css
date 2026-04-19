@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* Surfaces — crisp white + cool grey */
+    --background: 0 0% 100%;            /* pure white */
+    --foreground: 220 65% 8%;           /* near black with navy depth */
+
+    --paper: 220 14% 97%;               /* light grey paper */
+    --paper-deep: 220 12% 92%;          /* deeper grey */
+    --ink: 0 0% 6%;                     /* true black ink */
+    --ink-soft: 220 15% 28%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 65% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 65% 8%;
+
+    /* Brand — confident navy + signal orange */
+    --primary: 218 75% 18%;             /* deep navy */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 218 65% 32%;
+
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 220 65% 8%;
+
+    --muted: 220 12% 95%;
+    --muted-foreground: 220 10% 42%;
+
+    --accent: 22 92% 52%;               /* signal orange */
+    --accent-foreground: 0 0% 100%;
+
+    --signal-amber: 38 95% 55%;
+    --signal-green: 152 50% 36%;
+    --signal-red: 358 70% 52%;
+    --signal-blue: 218 75% 32%;
+
+    --destructive: 358 70% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 88%;
+    --border-strong: 220 65% 8%;
+    --input: 220 13% 90%;
+    --ring: 218 75% 18%;
+
+    --radius: 0.25rem;
+
+    /* Gradients */
+    --gradient-paper: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 14% 96%) 100%);
+    --gradient-ink: linear-gradient(135deg, hsl(0 0% 6%) 0%, hsl(218 75% 18%) 100%);
+    --gradient-signal: linear-gradient(135deg, hsl(22 92% 52%) 0%, hsl(28 95% 58%) 100%);
+
+    /* Shadows */
+    --shadow-paper: 0 1px 2px hsl(0 0% 6% / 0.04), 0 4px 12px hsl(0 0% 6% / 0.06);
+    --shadow-elevated: 0 4px 20px hsl(0 0% 6% / 0.08), 0 12px 40px hsl(0 0% 6% / 0.06);
+    --shadow-ink: 0 8px 32px hsl(218 75% 18% / 0.20);
+
+    /* Topographic grid */
+    --grid-line: 220 30% 12%;
+
+    /* Fonts */
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Sidebar (kept for shadcn) */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 15% 28%;
+    --sidebar-primary: 218 75% 18%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 94%;
+    --sidebar-accent-foreground: 220 65% 8%;
+    --sidebar-border: 220 13% 88%;
+    --sidebar-ring: 218 75% 18%;
+  }
+
+  .dark {
+    --background: 220 50% 6%;
+    --foreground: 0 0% 98%;
+    --paper: 220 42% 9%;
+    --paper-deep: 220 38% 12%;
+    --ink: 0 0% 98%;
+    --ink-soft: 220 12% 72%;
+    --card: 220 42% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 42% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 22 92% 55%;
+    --primary-foreground: 220 50% 6%;
+    --secondary: 220 30% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 220 30% 15%;
+    --muted-foreground: 220 10% 65%;
+    --accent: 22 92% 55%;
+    --accent-foreground: 220 50% 6%;
+    --destructive: 358 70% 58%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 26% 20%;
+    --border-strong: 0 0% 98%;
+    --input: 220 26% 20%;
+    --ring: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 1px 1px, hsl(var(--grid-line) / 0.06) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+  .font-display { font-family: var(--font-display); font-feature-settings: "ss01", "ss02"; }
+  .font-mono { font-family: var(--font-mono); }
+}
+
+@layer components {
+  /* Topographic contour decoration */
+  .contour-bg {
+    background-image:
+      repeating-radial-gradient(
+        ellipse at 30% 40%,
+        transparent 0,
+        transparent 40px,
+        hsl(var(--ink) / 0.03) 40px,
+        hsl(var(--ink) / 0.03) 41px
+      );
+  }
+
+  .map-frame {
+    border: 1px solid hsl(var(--border-strong));
+    box-shadow: var(--shadow-ink), inset 0 0 0 1px hsl(var(--background));
+  }
+
+  .data-card {
+    @apply bg-card border border-border p-6;
+    box-shadow: var(--shadow-paper);
+  }
+
+  .data-tag {
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground;
+  }
+
+  .display-num {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .stamp {
+    border: 1.5px solid currentColor;
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] px-2 py-0.5 inline-flex items-center;
+  }
+
+  .crosshair-cursor {
+    cursor: crosshair;
+  }
+}
+
+/* Leaflet base styling overrides for parchment theme */
+.leaflet-container {
+  background: hsl(var(--paper-deep)) !important;
+  font-family: var(--font-mono) !important;
+}
+.leaflet-control-attribution {
+  background: hsl(var(--paper) / 0.85) !important;
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 9px !important;
+}
+.leaflet-control-zoom a {
+  background: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border-strong)) !important;
+}
+
+@keyframes pin-drop {
+  0% { transform: translateY(-30px) scale(0.5); opacity: 0; }
+  60% { transform: translateY(2px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes blink {
+  50% { opacity: 0.2; }
+}
+.animate-pin-drop { animation: pin-drop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.animate-pulse-ring { animation: pulse-ring 1.6s ease-out infinite; }
+.animate-scan { animation: scan 2s ease-in-out infinite; }
+.animate-blink { animation: blink 1s ease-in-out infinite; }
+
+/* ── Print / PDF export ─────────────────────────────────────────────────────── */
+@media print {
+  /* Hide everything that isn't the report */
+  body > * { display: none !important; }
+  #print-report { display: block !important; }
+
+  #print-report {
+    font-family: 'Inter', sans-serif;
+    color: #0a0a0f;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Force backgrounds to print */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* No page break inside cards */
+  .print-card { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Hide animations, shadows, hover states */
+  * { animation: none !important; transition: none !important; }
+
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+}
